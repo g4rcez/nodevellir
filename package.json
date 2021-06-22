@@ -1,0 +1,36 @@
+{
+  "name": "nodevellir",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": {
+    "name": "g4rcez",
+    "url": "https://github.com/g4rcez"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "rm -rf ./index && tsc",
+    "dev": "ts-node-dev src/index.ts -w",
+    "server": "json-server --watch db.json",
+    "start": "node dist/index.js"
+  },
+  "devDependencies": {
+    "@types/formidable": "1.2.2",
+    "@types/http-proxy": "1.17.6",
+    "@types/node": "15.12.4",
+    "@types/path-to-regexp": "1.7.0",
+    "json-server": "0.16.3",
+    "ts-node-dev": "1.1.6",
+    "tslib": "2.3.0",
+    "typescript": "4.3.4"
+  },
+  "dependencies": {
+    "0http": "3.1.1",
+    "fast-json-stringify": "2.7.6",
+    "find-my-way": "4.3.0",
+    "formidable": "1.2.2",
+    "http-proxy": "1.18.1",
+    "is-plain-obj": "4.0.0",
+    "path-to-regexp": "6.2.0",
+    "querystring": "0.2.1"
+  }
+}
