@@ -1,6 +1,6 @@
 {
   "name": "nodevellir",
-  "version": "1.0.0",
+  "version": "1.0.0-1",
   "main": "dist/index.js",
   "type": "module",
   "author": {
@@ -11,7 +11,7 @@
   "scripts": {
     "build": "rm -rf ./index && tsc",
     "dev": "ts-node-dev src/index.ts -w",
-    "server": "json-server --watch ./server/db.json",
+    "server": "json-server --watch ./server/db.json --port 9801",
     "start": "node dist/index.js"
   },
   "devDependencies": {
