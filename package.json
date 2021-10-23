@@ -1,37 +1,47 @@
 {
   "name": "nodevellir",
-  "version": "1.0.0-1",
+  "version": "1.0.0-2",
   "main": "dist/index.js",
-  "type": "module",
   "author": {
     "name": "g4rcez",
     "url": "https://github.com/g4rcez"
   },
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf ./index && tsc",
+    "build": "tsc",
     "dev": "ts-node-dev src/index.ts -w",
     "server": "json-server --watch ./server/db.json --port 9801",
     "start": "node dist/index.js"
   },
   "devDependencies": {
-    "@types/formidable": "1.2.2",
-    "@types/http-proxy": "1.17.6",
-    "@types/node": "15.12.4",
+    "@types/connect": "3.4.35",
+    "@types/cookies": "0.7.7",
+    "@types/formidable": "1.2.4",
+    "@types/http-proxy": "1.17.7",
+    "@types/node": "16.11.4",
+    "@types/node-static": "0.7.7",
     "@types/path-to-regexp": "1.7.0",
-    "json-server": "0.16.3",
-    "ts-node-dev": "1.1.6",
-    "tslib": "2.3.0",
-    "typescript": "4.3.4"
+    "@types/serve-handler": "6.1.1",
+    "@types/serve-static": "1.13.10",
+    "json-server": "0.17.0",
+    "serve-static": "1.14.1",
+    "ts-node-dev": "1.1.8",
+    "tslib": "2.3.1",
+    "typescript": "4.4.4"
   },
   "dependencies": {
     "0http": "3.1.1",
-    "fast-json-stringify": "2.7.6",
-    "find-my-way": "4.3.0",
+    "connect": "3.7.0",
+    "cookies": "0.8.0",
+    "fast-json-stringify": "2.7.11",
+    "find-my-way": "4.3.3",
     "formidable": "1.2.2",
     "http-proxy": "1.18.1",
     "is-plain-obj": "4.0.0",
+    "mime": "2.5.2",
+    "node-static": "0.7.11",
     "path-to-regexp": "6.2.0",
-    "querystring": "0.2.1"
+    "querystring": "0.2.1",
+    "serve-handler": "6.1.3"
   }
 }
