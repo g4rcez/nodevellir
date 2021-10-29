@@ -10,8 +10,12 @@ const fileNotExist = (path: string) => {
 };
 export const Static = (rootPath: string) => {
   const base = Path.resolve(rootPath);
+
   return async (req: Http.IncomingMessage, res: Http.ServerResponse) => {
-    const path = (req.url ?? "").replaceAll("../", "");
+
+    
+
+    const path = req.url ?? "";
     const filePath = Path.join(base, path);
     if (!Fs.existsSync(filePath)) {
       fileNotExist(path);
