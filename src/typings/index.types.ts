@@ -16,11 +16,11 @@ export type ProxyRoutes = {
   to: {
     method?: HttpMethod;
     path: string;
-    rewrite?: string;
   };
 };
 
-export type Request = Http.IncomingMessage & {
+export type HttpRequest = Http.IncomingMessage & {
+  protocol: "http" | "https";
   urlParams: Record<string, string | undefined>;
   qs: {
     [key: string]: string | string[] | null;
@@ -33,16 +33,17 @@ export type Request = Http.IncomingMessage & {
 
 export type JsonCallback = (statusCode: HttpStatusCode, object: unknown) => Promise<void> | void;
 
-export type Response = Http.ServerResponse & {
+export type HttpResponse = Http.ServerResponse & {
   json: JsonCallback;
   res: HttpStatusCode;
-  contentType: (type: string) => void
+  contentType: (type: string) => HttpResponse;
   setCookie(name: string, value?: string | null, opts?: SetOption): void;
   clearCookie(name: string): void;
   file: (statusCode: HttpStatusCode, contentType: string, file: Buffer) => Promise<void> | void;
   text: (statusCode: HttpStatusCode, text: string) => Promise<void> | void;
   page: (statusCode: HttpStatusCode, text: string) => Promise<void> | void;
+  redirect: (path: string, statusCode: HttpStatusCode, openRedirect?: boolean) => void;
 };
 
 export type DoneFunction = (err?: unknown) => void;
-export type HttpHandler = (req: Request, res: Response, done: DoneFunction) => void | Promise<void>;
+export type HttpHandler = (req: HttpRequest, res: HttpResponse, done: DoneFunction) => void | Promise<void>;

@@ -8,16 +8,18 @@ const fileNotExist = (path: string) => {
   error.name = "@Static/NotExist";
   throw error;
 };
+
+const isSecurePath = (base: string, maliciousPath: string) => Path.dirname(base) === Path.dirname(maliciousPath);
+
 export const Static = (rootPath: string) => {
   const base = Path.resolve(rootPath);
 
   return async (req: Http.IncomingMessage, res: Http.ServerResponse) => {
-
-    
-
     const path = req.url ?? "";
-    const filePath = Path.join(base, path);
-    if (!Fs.existsSync(filePath)) {
+    const filePath = Path.normalize(Path.join(base, path));
+
+    const secure = isSecurePath(base, filePath);
+    if (!Fs.existsSync(filePath) && secure) {
       fileNotExist(path);
     }
     const info = Fs.statSync(filePath);

@@ -1,7 +1,7 @@
 {
   "name": "nodevellir",
   "version": "1.0.0-2",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "author": {
     "name": "g4rcez",
     "url": "https://github.com/g4rcez"

@@ -1,13 +1,14 @@
 import { IncomingMessage } from "http";
-import { Request } from "../typings/index.types";
 import SecureJsonParse from "secure-json-parse";
+import { HttpRequest } from "../typings/index.types";
 
 const contentTypeParsers: Partial<Record<string, (body: string) => any>> = {
   "application/json": SecureJsonParse.safeParse,
+  "application/x-www-form-urlencoded": undefined,
 };
 
-export const NodevellirRequest = async (req: IncomingMessage): Promise<Request> => {
-  const request = req as Request;
+export const NodevellirRequest = async (req: IncomingMessage): Promise<HttpRequest> => {
+  const request = req as HttpRequest;
   request.hostname = req.headers.host ?? "";
 
   let body: Uint8Array[] = [];
@@ -22,7 +23,7 @@ export const NodevellirRequest = async (req: IncomingMessage): Promise<Request> 
           if (parser) (req as any).body = parser(Buffer.concat(body).toString());
           else (req as any).body = Buffer.concat(body).toString();
 
-          resolve(body);
+          return resolve(body);
         });
     });
   }

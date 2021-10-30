@@ -13,12 +13,17 @@ proxy.register([
   {
     host: "http://localhost:9801",
     from: { path: "/post-test/:id/test", method: "get" },
-    to: { path: "/posts/:id", method: "get", rewrite: "^/post-test/:id/test" },
+    to: { path: "/posts/:id", method: "get" },
   },
   {
     host: "http://localhost:9801",
-    from: { path: "/testing*", method: "get" },
+    from: { path: "/testing", method: "get" },
     to: { path: "/posts/", method: "get" },
+  },
+  {
+    host: "http://localhost:9801",
+    from: { path: "/testing/:id", method: "get" },
+    to: { path: "/posts/:id", method: "get" },
   },
 ]);
 
@@ -31,7 +36,7 @@ const staticMiddleware = Static("./server");
 const cookieMiddleware = Cookies();
 
 server
-  .post("/new", (req, res) => {
+  .post("/new", (_req, res) => {
     res.json(200, { message: "hello world" });
   })
   .get("/package-json", cookieMiddleware, (_, res) => {
@@ -44,5 +49,6 @@ server
   .use("/static", staticMiddleware);
 
 setTimeout(() => {
+  console.log("NEW ROUTE /");
   server.get("/", (_req, res) => res.json(HttpStatusCode.Ok, { root: true }));
 }, 10000);

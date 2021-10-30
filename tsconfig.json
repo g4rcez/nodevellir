@@ -7,7 +7,6 @@
     "noImplicitAny": true,
     "preserveConstEnums": true,
     "strict": true,
-    "importHelpers": true,
     "allowSyntheticDefaultImports": true,
     "alwaysStrict": true,
     "downlevelIteration": true,

@@ -1,5 +1,5 @@
 import Cookie, { SetOption } from "cookies";
-import { Request, Response } from "../typings/index.types";
+import { HttpRequest, HttpResponse } from "../typings/index.types";
 
 const parseCookie = (str: string) =>
   str === ""
@@ -13,7 +13,7 @@ const parseCookie = (str: string) =>
         }, {});
 
 export const Cookies = () => {
-  function handler(req: Request, res: Response) {
+  function handler(req: HttpRequest, res: HttpResponse) {
     const cookies = new Cookie(req, res, {
       secure: true,
       keys: ["prevent-tampering"],
